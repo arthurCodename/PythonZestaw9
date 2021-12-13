@@ -68,7 +68,6 @@ class Node:
         else: 
             return Node.count_leafs(top.left) + Node.count_leafs(top.right)
 
-
     def count_total(top):
         if top is None:
             return 0
@@ -91,11 +90,9 @@ class TestFrac(unittest.TestCase):
         
 
     def test__count_leaf(self):
-        
         self.assertEqual(Node.count_leafs(self.root), 3)
 
     def test__count_leaf(self):
-        
         self.assertEqual(Node.count_total(self.root), 15)   
 
     def tearDown(self): pass 
