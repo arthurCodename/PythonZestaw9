@@ -39,6 +39,7 @@ class SingleList:
             self.head = self.tail = node
         self.length += 1
 
+
     def remove_head(self):          # klasy O(1)
         if self.is_empty():
             raise ValueError("pusta lista")
@@ -50,26 +51,29 @@ class SingleList:
         node.next = None   # czyszczenie łącza
         self.length -= 1
         return node   # zwracamy usuwany node
+        
 
     def remove_tail(self):
         if self.is_empty():
             raise ValueError("pusta lista")
-        node = self.tail
+        
         if self.head == self.tail:   # self.length == 1
             self.head = self.tail = None
-        else:
-            while(self.head.next.next):
-                self.head = self.head.next
-            self.head.next = None
-            return node
+        current = self.head
+        prev = current
+        while (current.next != None):
+            prev = current
+            current = current.next
+        prev.next = None
+        return current
 
     def merge(self,other):
         if self.is_empty() and other.is_empty():
             return None
         elif self.is_empty():
-            return other
-        elif other.is_empty():
-            return self
+            self.head = other.head
+            self.tail = other.tail
+            self.length = other.length
         else:
             self.tail.next = other.head
             self.tail = other.tail
